@@ -3,32 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>O Ponto de Vista do Leitor Onisciente: a obra coreana que transformou a relação entre leitor e história</title>
+<title>O Ponto de Vista do Leitor Onisciente — Matéria Especial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  body{font-family:Georgia,serif;background:#f4f4f4;margin:0;padding:0;color:#222;}
-  header{background:#111;color:white;padding:50px 30px;text-align:center;}
-  header h1{margin:0;font-size:2.6rem;line-height:1.3;}
-  header h2{font-weight:normal;font-style:italic;margin-top:18px;font-size:1.2rem;opacity:.9;}
-  .container{max-width:1000px;margin:auto;background:white;padding:40px;box-shadow:0 0 10px rgba(0,0,0,0.1);}
-  figure{margin:30px 0;}
-  img{width:100%;border-radius:10px;display:block;}
-  figcaption{font-size:.9rem;color:#666;text-align:center;margin-top:8px;font-style:italic;}
-  p{font-size:1.1rem;text-align:justify;line-height:1.9;}
-  h3{font-size:1.5rem;margin-top:40px;color:#111;border-left:4px solid #c0392b;padding-left:12px;}
-  .destaque{font-weight:bold;font-size:1.2rem;background:#fafafa;border-left:4px solid #111;padding:15px 20px;margin:25px 0;}
-  footer{text-align:center;background:#111;color:white;padding:20px;margin-top:40px;}
+  :root{
+    --bg:#05030f;
+    --bg-2:#0a0820;
+    --ink:#e8e6ff;
+    --ink-dim:#a8a6c9;
+    --gold:#d4a85a;
+    --violet:#9b6cff;
+    --cyan:#5ad6ff;
+    --magenta:#ff6cc7;
+    --grad-cosmic:linear-gradient(135deg,#9b6cff 0%,#5ad6ff 50%,#d4a85a 100%);
+    --grad-nebula:radial-gradient(ellipse at top,rgba(155,108,255,.25),transparent 60%),
+                  radial-gradient(ellipse at bottom right,rgba(90,214,255,.18),transparent 55%),
+                  radial-gradient(ellipse at bottom left,rgba(212,168,90,.12),transparent 55%);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    margin:0;padding:0;
+    overflow-x:hidden;
+    line-height:1.8;
+  }
+
+  /* ===== Animated star field ===== */
+  .stars,.stars2,.stars3,.nebula{
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+  }
+  .nebula{background:var(--grad-nebula);opacity:.9;}
+  .stars{
+    background-image:
+      radial-gradient(1px 1px at 20px 30px,#fff,transparent),
+      radial-gradient(1px 1px at 40px 70px,#fff,transparent),
+      radial-gradient(1px 1px at 90px 40px,#fff,transparent),
+      radial-gradient(2px 2px at 130px 80px,#fff,transparent),
+      radial-gradient(1px 1px at 160px 120px,#fff,transparent),
+      radial-gradient(1px 1px at 200px 50px,#fff,transparent),
+      radial-gradient(1px 1px at 240px 100px,#fff,transparent),
+      radial-gradient(2px 2px at 280px 30px,#fff,transparent);
+    background-repeat:repeat;
+    background-size:300px 200px;
+    animation:drift 200s linear infinite, twinkle 4s ease-in-out infinite;
+    opacity:.7;
+  }
+  .stars2{
+    background-image:
+      radial-gradient(1px 1px at 50px 90px,#9b6cff,transparent),
+      radial-gradient(2px 2px at 150px 30px,#5ad6ff,transparent),
+      radial-gradient(1px 1px at 250px 150px,#fff,transparent),
+      radial-gradient(1px 1px at 350px 60px,#d4a85a,transparent);
+    background-repeat:repeat;
+    background-size:400px 250px;
+    animation:drift 350s linear infinite reverse, twinkle 6s ease-in-out infinite;
+    opacity:.6;
+  }
+  .stars3{
+    background-image:
+      radial-gradient(2px 2px at 100px 50px,#fff,transparent),
+      radial-gradient(3px 3px at 300px 200px,#ff6cc7,transparent),
+      radial-gradient(2px 2px at 500px 100px,#5ad6ff,transparent);
+    background-repeat:repeat;
+    background-size:600px 400px;
+    animation:drift 500s linear infinite, twinkle 8s ease-in-out infinite;
+    opacity:.5;
+  }
+  @keyframes drift{from{background-position:0 0}to{background-position:1000px 1000px}}
+  @keyframes twinkle{0%,100%{filter:brightness(1)}50%{filter:brightness(1.6)}}
+
+  /* shooting stars */
+  .shooting{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:hidden}
+  .shooting span{
+    position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;
+    box-shadow:0 0 8px 2px #fff,0 0 20px 4px rgba(155,108,255,.6);
+    animation:shoot 6s linear infinite;
+  }
+  .shooting span::after{
+    content:"";position:absolute;top:0;left:0;width:120px;height:1px;
+    background:linear-gradient(90deg,#fff,transparent);transform:translateX(-120px);
+  }
+  .shooting span:nth-child(1){top:10%;left:-10%;animation-delay:0s;animation-duration:5s}
+  .shooting span:nth-child(2){top:30%;left:-10%;animation-delay:2s;animation-duration:7s}
+  .shooting span:nth-child(3){top:60%;left:-10%;animation-delay:4s;animation-duration:6s}
+  .shooting span:nth-child(4){top:80%;left:-10%;animation-delay:1s;animation-duration:8s}
+  @keyframes shoot{
+    0%{transform:translate(0,0) rotate(20deg);opacity:0}
+    10%{opacity:1}
+    100%{transform:translate(120vw,40vh) rotate(20deg);opacity:0}
+  }
+
+  /* ===== Reading progress bar ===== */
+  #progress{
+    position:fixed;top:0;left:0;height:3px;width:0%;
+    background:var(--grad-cosmic);
+    z-index:1000;box-shadow:0 0 10px var(--violet);
+    transition:width .1s linear;
+  }
+
+  /* ===== Header ===== */
+  header{
+    position:relative;z-index:2;
+    padding:120px 30px 100px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .kicker{
+    font-family:'Cinzel',serif;
+    letter-spacing:.5em;
+    font-size:.75rem;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:30px;
+    opacity:0;animation:fadeUp 1.2s .2s forwards;
+  }
+  header h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:700;
+    font-size:clamp(2.4rem,6vw,5rem);
+    line-height:1.1;
+    margin:0 auto 25px;
+    max-width:900px;
+    background:var(--grad-cosmic);
+    -webkit-background-clip:text;background-clip:text;
+    color:transparent;
+    text-shadow:0 0 60px rgba(155,108,255,.3);
+    opacity:0;animation:fadeUp 1.2s .4s forwards;
+  }
+  header h2{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-weight:400;
+    font-size:clamp(1.1rem,2vw,1.4rem);
+    color:var(--ink-dim);
+    max-width:700px;margin:0 auto;
+    opacity:0;animation:fadeUp 1.2s .6s forwards;
+  }
+  .ornament{
+    margin:40px auto 0;
+    font-size:1.5rem;color:var(--gold);letter-spacing:1em;padding-left:1em;
+    opacity:0;animation:fadeUp 1.2s .8s forwards;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ===== Container ===== */
+  .container{
+    position:relative;z-index:2;
+    max-width:880px;margin:0 auto 60px;
+    background:linear-gradient(180deg,rgba(15,10,40,.85),rgba(8,5,25,.95));
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(155,108,255,.2);
+    border-radius:20px;
+    padding:60px clamp(25px,5vw,70px);
+    box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(155,108,255,.1) inset;
+  }
+
+  figure{margin:45px 0;}
+  figure img{
+    width:100%;border-radius:14px;display:block;
+    box-shadow:0 20px 50px rgba(0,0,0,.7),0 0 0 1px rgba(155,108,255,.3);
+    transition:transform .6s ease, box-shadow .6s ease, filter .6s ease;
+    filter:saturate(1.05) brightness(.95);
+  }
+  figure:hover img{
+    transform:scale(1.02) translateY(-4px);
+    box-shadow:0 30px 70px rgba(0,0,0,.8),0 0 30px rgba(155,108,255,.4);
+    filter:saturate(1.15) brightness(1.05);
+  }
+  figcaption{
+    text-align:center;margin-top:14px;
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    color:var(--ink-dim);font-size:.95rem;
+  }
+
+  p{
+    font-size:1.06rem;
+    text-align:justify;
+    color:#d4d2eb;
+    margin:1.2em 0;
+  }
+  p strong{color:#fff;font-weight:600;}
+  p em{color:var(--cyan);font-style:italic;}
+
+  h3{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(1.7rem,3vw,2.2rem);
+    margin:60px 0 20px;
+    color:#fff;
+    position:relative;padding-left:24px;
+    letter-spacing:.01em;
+  }
+  h3::before{
+    content:"✦";position:absolute;left:0;top:.2em;
+    font-size:1rem;color:var(--gold);
+    text-shadow:0 0 12px var(--gold);
+  }
+  h3::after{
+    content:"";display:block;margin-top:10px;
+    width:60px;height:2px;
+    background:var(--grad-cosmic);
+    border-radius:2px;
+  }
+
+  .destaque{
+    position:relative;
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:1.35rem;line-height:1.6;
+    background:linear-gradient(135deg,rgba(155,108,255,.12),rgba(90,214,255,.08));
+    border-left:3px solid var(--gold);
+    padding:28px 32px 28px 60px;
+    margin:35px 0;
+    border-radius:0 14px 14px 0;
+    color:#f3f1ff;
+  }
+  .destaque::before{
+    content:"❝";
+    position:absolute;left:18px;top:8px;
+    font-size:3rem;color:var(--gold);
+    font-family:Georgia,serif;line-height:1;
+    text-shadow:0 0 20px rgba(212,168,90,.5);
+  }
+
+  /* ===== Interactive Constellations Card ===== */
+  .constellation-box{
+    margin:50px 0;padding:30px;
+    background:radial-gradient(ellipse at center,rgba(155,108,255,.1),transparent 70%);
+    border:1px dashed rgba(155,108,255,.3);
+    border-radius:16px;text-align:center;
+  }
+  .constellation-box h4{
+    font-family:'Cinzel',serif;letter-spacing:.3em;font-size:.85rem;
+    color:var(--gold);margin:0 0 8px;text-transform:uppercase;
+  }
+  .constellation-box p.small{font-size:.95rem;color:var(--ink-dim);margin:0 0 20px;}
+  #sky{
+    width:100%;height:280px;
+    background:radial-gradient(ellipse at center,rgba(20,15,50,.8),rgba(5,3,15,.9));
+    border-radius:12px;cursor:crosshair;
+    border:1px solid rgba(155,108,255,.2);
+    position:relative;overflow:hidden;
+  }
+  #sky canvas{display:block;width:100%;height:100%;}
+  .sky-hint{
+    position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+    font-size:.8rem;color:var(--ink-dim);font-style:italic;
+    pointer-events:none;opacity:.7;
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    position:relative;z-index:2;
+    text-align:center;padding:50px 20px 40px;
+    color:var(--ink-dim);font-size:.9rem;
+    border-top:1px solid rgba(155,108,255,.15);
+    margin-top:40px;
+    background:linear-gradient(180deg,transparent,rgba(155,108,255,.05));
+  }
+  footer .sig{
+    font-family:'Cinzel',serif;letter-spacing:.4em;font-size:.7rem;
+    color:var(--gold);text-transform:uppercase;margin-bottom:10px;
+  }
+  footer .wall{
+    margin-top:20px;font-family:'Cormorant Garamond',serif;font-style:italic;
+    color:var(--violet);opacity:.7;
+  }
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease, transform .9s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:640px){
+    header{padding:80px 20px 60px;}
+    .container{padding:40px 22px;margin:0 12px 40px;border-radius:14px;}
+    p{text-align:left;}
+    .destaque{padding:22px 22px 22px 50px;font-size:1.15rem;}
+  }
 </style>
 </head>
 <body>
+
+<div id="progress"></div>
+<div class="nebula"></div>
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+<div class="shooting"><span></span><span></span><span></span><span></span></div>
+
 <header>
+  <div class="kicker">Matéria Especial</div>
   <h1>O Ponto de Vista do Leitor Onisciente</h1>
   <h2>A obra coreana que transformou a relação entre leitor e história</h2>
+  <div class="ornament">✦ ✧ ✦</div>
 </header>
 
 <div class="container">
 
-  <figure>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcFwnROkvXz1HCr-V1uDl3pbvDTBfVJMWsYHZMRQb_lQ&s=10)" alt="Arte-chave de Omniscient Reader's Viewpoint">
+  <figure class="reveal">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcFwnROkvXz1HCr-V1uDl3pbvDTBfVJMWsYHZMRQb_lQ&s=10" alt="Arte-chave de Omniscient Reader's Viewpoint">
     <figcaption>Arte oficial de <em>Omniscient Reader's Viewpoint</em>.</figcaption>
   </figure>
 
@@ -36,9 +312,9 @@
 
   <p>Escrita pela dupla de autores que utiliza o pseudônimo <strong>Sing Shong</strong>, a obra foi inicialmente lançada como uma webnovel e rapidamente conquistou uma base de leitores leais devido à sua proposta única. Mais tarde, sua adaptação em manhwa aumentou ainda mais sua popularidade, levando a história a um público que prefere o formato visual. No entanto, o verdadeiro diferencial de ORV não reside apenas em sua fama ou em sua premissa cativante, mas na maneira como transforma a leitura, o leitor e a própria noção de ficção em elementos centrais da narrativa.</p>
 
-  <h3>Kim Dokja, o leitor que virou protagonista</h3>
+  <h3 class="reveal">Kim Dokja, o leitor que virou protagonista</h3>
 
-  <figure>
+  <figure class="reveal">
     <img src="https://i.redd.it/66ph272fzha81.jpg" alt="Kim Dokja, protagonista de ORV">
     <figcaption>Kim Dokja, o "leitor" que dá nome à obra.</figcaption>
   </figure>
@@ -47,24 +323,24 @@
 
   <p>Há um detalhe interessante: ao longo dos anos, todos os outros leitores abandonaram a obra. Quando o último capítulo finalmente é lançado, só resta um leitor fiel até o fim — o próprio Kim Dokja. Seu nome, inclusive, possui um significado especial. A palavra coreana <em>dokja</em> (독자) traduz-se como "leitor", uma escolha que revela desde o início a importância simbólica do personagem na narrativa.</p>
 
-  <h3>Quando a ficção invade a realidade</h3>
+  <h3 class="reveal">Quando a ficção invade a realidade</h3>
 
-  <figure>
+  <figure class="reveal">
     <img src="https://static.wikia.nocookie.net/omniscient-readers-viewpoint/images/4/45/Survivors_of_carriage_3807.png/revision/latest?cb=20220813221345" alt="Sobreviventes do vagão 3807">
     <figcaption>O cenário do trem, onde tudo começa.</figcaption>
   </figure>
 
   <p>Tudo muda no dia em que a webnovel chega ao seu fim. Eventos impossíveis começam a acontecer e o mundo real passa a seguir exatamente os mesmos acontecimentos que foram descritos na história que Dokja acompanhou por anos. Subitamente, monstros aparecem, o céu parece observar a humanidade, e a população é lançada em uma série de situações mortais onde a sobrevivência, a estratégia e a adaptação tornam-se fundamentais.</p>
 
-  <p class="destaque">Enquanto a maioria das pessoas lida com uma realidade totalmente desconhecida, Kim Dokja tem uma vantagem sem precedentes: ele conhece aquela história melhor do que qualquer outra pessoa.</p>
+  <p class="destaque reveal">Enquanto a maioria das pessoas lida com uma realidade totalmente desconhecida, Kim Dokja tem uma vantagem sem precedentes: ele conhece aquela história melhor do que qualquer outra pessoa.</p>
 
   <p>Contudo, ORV rapidamente demonstra que saber o que vai acontecer não significa ter controle sobre o que realmente acontece. Pequenas mudanças geram consequências inesperadas, personagens começam a agir de formas imprevistas, e eventos que estavam originalmente descritos agora tomam rumos diferentes daqueles registrados na webnovel.</p>
 
   <p>É exatamente nesse ponto que a obra se aprofunda. Em vez de se restringir à ideia de um protagonista que conhece o futuro, ORV investiga a diferença entre conhecer uma história e realmente compreendê-la. O leitor percebe, junto com Dokja, que entender um desfecho não implica necessariamente entender todos os caminhos que o levam até ele.</p>
 
-  <h3>Dokja e Yoo Joonghyuk: o leitor e o herói</h3>
+  <h3 class="reveal">Dokja e Yoo Joonghyuk: o leitor e o herói</h3>
 
-  <figure>
+  <figure class="reveal">
     <img src="https://i.pinimg.com/736x/26/cd/20/26cd2092ac34bc36d069f5c70dc65805.jpg" alt="Yoo Joonghyuk">
     <figcaption>Yoo Joonghyuk, o protagonista original da webnovel dentro da obra.</figcaption>
   </figure>
@@ -73,9 +349,9 @@
 
   <p>A interação entre os dois gera um contraste extremamente interessante entre quem vive a história e quem a lê. Ao longo da narrativa, essa dinâmica evolui para uma das relações mais importantes e complexas da obra, servindo de base para muitas das questões apresentadas pela trama. Em diversos momentos, ORV coloca lado a lado duas formas de existência dentro da ficção: aquele que protagoniza os eventos e aquele que os observa.</p>
 
-  <h3>Cenários, Constelações e a metáfora do público</h3>
+  <h3 class="reveal">Cenários, Constelações e a metáfora do público</h3>
 
-  <figure>
+  <figure class="reveal">
     <img src="https://static.wikia.nocookie.net/omniscient-readers-viewpoint/images/3/31/001_(1).png/revision/latest?cb=20220416001435&path-prefix=ru" alt="Constelações observando os cenários">
     <figcaption>As Constelações, espectadores cósmicos do Star Stream.</figcaption>
   </figure>
@@ -84,9 +360,19 @@
 
   <p>As Constelações simbolizam o público em si. Elas observam os cenários como espectadores de um grande espetáculo, escolhem suas preferências, investem em personagens específicos e influenciam os eventos de acordo com seus interesses. Muitas Constelações atuam como patrocinadoras dos protagonistas humanos, chamados de "encarnações", concedendo habilidades e poderes em troca de influência dentro da narrativa. Entretanto, assim como os leitores não podem simplesmente entrar em uma história e modificar seus eventos sem restrições, as Constelações também são limitadas pelas regras do <strong>Star Stream</strong>. A Probabilidade restringe sua interferência direta, fazendo com que as encarnações humanas sejam seus principais meios de ação. Assim, ORV transforma a relação entre espectador e narrativa em algo quase literal.</p>
 
-  <h3>A metalinguagem como estrutura</h3>
+  <!-- ===== INTERATIVO ===== -->
+  <div class="constellation-box reveal">
+    <h4>★ Forje sua própria constelação ★</h4>
+    <p class="small">Clique no céu abaixo para criar estrelas e linhas entre elas — como uma Constelação observando seu próprio cenário.</p>
+    <div id="sky">
+      <canvas id="skyCanvas"></canvas>
+      <div class="sky-hint">clique para adicionar estrelas • duplo-clique para limpar</div>
+    </div>
+  </div>
 
-  <figure>
+  <h3 class="reveal">A metalinguagem como estrutura</h3>
+
+  <figure class="reveal">
     <img src="https://static.wikia.nocookie.net/omniscient-readers-viewpoint/images/d/d9/Fourth_Wall.png/revision/latest?cb=20240508221724" alt="A Quarta Parede de Kim Dokja">
     <figcaption>A "Quarta Parede", habilidade que materializa o papel do leitor.</figcaption>
   </figure>
@@ -95,13 +381,13 @@
 
   <p>A própria presença de um "leitor onisciente" sugere uma reflexão sobre o papel de quem consome histórias. Frequentemente, ORV parece questionar ao leitor: quem é o verdadeiro proprietário de uma narrativa? Quem a escreve? Quem a vive? Ou quem a acompanha, interpreta e mantém viva em sua memória?</p>
 
-  <h3>Emoção além do conceito</h3>
+  <h3 class="reveal">Emoção além do conceito</h3>
 
   <p>Entretanto, ORV não se fundamenta apenas em suas ideias. Um de seus maiores méritos está na habilidade de equilibrar conceitos complexos com emoção genuína. A trama apresenta batalhas intensas, desafios grandiosos e um constante senso de urgência, mas nunca perde de vista os conflitos humanos de seus personagens.</p>
 
   <p>Temas como destino, livre-arbítrio, identidade, memória, sacrifício e pertencimento aparecem de maneira recorrente. Os personagens frequentemente se vêem obrigados a escolher entre seus desejos pessoais e o bem coletivo, enfrentando consequências que deixam marcas duradouras. Raramente uma decisão é apresentada como totalmente correta ou errada, o que contribui para a profundidade emocional da obra.</p>
 
-  <figure>
+  <figure class="reveal">
     <img src="https://static.wikia.nocookie.net/omniscient-readers-viewpoint/images/3/3b/Kim_com_220.png/revision/latest?cb=20250113010315" alt="Companhia de Kim Dokja">
     <figcaption>A "Companhia de Kim Dokja", grupo central da trama.</figcaption>
   </figure>
@@ -110,9 +396,9 @@
 
   <p>Além disso, o mundo construído por Sing Shong é incrivelmente dinâmico. Os cenários mudam constantemente, as regras evoluem e novas camadas de mistério surgem a todo momento. Quando parece que tudo foi desvendado, a narrativa encontra uma maneira de revelar algo ainda mais grandioso. Essa sensação constante de descoberta ajuda a manter o leitor engajado ao longo de uma história extensa.</p>
 
-  <h3>Do texto à imagem: o impacto do manhwa</h3>
+  <h3 class="reveal">Do texto à imagem: o impacto do manhwa</h3>
 
-  <figure>
+  <figure class="reveal">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBw42SVqax36qFVyFV6_El5WmWo6QnK4euKAYLcnChctQ9iIhVKk20gK8&s=10" alt="Capa do manhwa de ORV">
     <figcaption>Capa do manhwa, adaptação que popularizou a obra mundialmente.</figcaption>
   </figure>
@@ -121,23 +407,86 @@
 
   <p>O impacto de ORV também é visível em sua comunidade de fãs. Fóruns, redes sociais e grupos de discussão reúnem leitores de diferentes partes do mundo para analisar personagens, interpretar simbolismos, formular teorias e debater os significados por trás dos eventos da trama. Parte desse sucesso se deve ao fato de que ORV não entrega todas as respostas imediatamente. É uma obra que convida à releitura e que recompensa a atenção aos detalhes.</p>
 
-  <h3>O legado de uma webnovel</h3>
+  <h3 class="reveal">O legado de uma webnovel</h3>
 
   <p>Dentro do contexto da literatura digital, ORV representa um exemplo notável de como as webnovels evoluíram, indo além do simples entretenimento episódico. A obra demonstra a capacidade deste formato de apresentar narrativas extensas, emocionalmente complexas e estruturalmente audaciosas. Seu sucesso internacional ajudou a elevar a visibilidade das produções sul-coreanas e a mostrar que histórias inicialmente publicadas na internet podem alcançar relevância global.</p>
 
   <p>No fim das contas, ORV é muito mais do que uma aventura sobre sobrevivência em um mundo apocalíptico. É uma reflexão sobre leitura, narrativas, destino, identidade, memória e a influência que as histórias exercem sobre aqueles que as acompanham. Por meio de seus personagens, a obra explora como a ficção pode moldar perspectivas, inspirar mudanças e permanecer viva muito tempo após a última página.</p>
 
-  <p class="destaque">Talvez seja exatamente isso que torna ORV tão memorável: a obra faz o leitor perceber que a linha entre quem observa uma história e quem a vive pode ser muito mais sutil do que aparenta.</p>
+  <p class="destaque reveal">Talvez seja exatamente isso que torna ORV tão memorável: a obra faz o leitor perceber que a linha entre quem observa uma história e quem a vive pode ser muito mais sutil do que aparenta.</p>
 
   <p>Ao transformar essa ideia no cerne de sua narrativa, ORV oferece uma experiência única, capaz de emocionar, surpreender e permanecer na memória muito depois do término da leitura.</p>
 
 </div>
 
 <footer>
-  Matéria Especial • O Ponto de Vista do Leitor Onisciente • Por Weird Anonymous
+  <div class="sig">✦ Matéria Especial ✦</div>
+  <div>O Ponto de Vista do Leitor Onisciente • Por Weird Anonymous</div>
+  <div class="wall">"E assim, o leitor continua lendo."</div>
 </footer>
+
+<script>
+  // Progress bar
+  const bar = document.getElementById('progress');
+  document.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    bar.style.width = pct + '%';
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Interactive constellation canvas
+  const canvas = document.getElementById('skyCanvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  function resize(){
+    const r = canvas.getBoundingClientRect();
+    canvas.width = r.width; canvas.height = r.height;
+    draw();
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    // background subtle stars
+    for(let i=0;i<60;i++){
+      const x = (i*47)%canvas.width, y=(i*89)%canvas.height;
+      ctx.fillStyle='rgba(255,255,255,'+(0.1+(i%5)*0.05)+')';
+      ctx.fillRect(x,y,1,1);
+    }
+    // connecting lines
+    if(stars.length>1){
+      ctx.strokeStyle='rgba(155,108,255,.6)';
+      ctx.lineWidth=1;
+      ctx.beginPath();
+      ctx.moveTo(stars[0].x,stars[0].y);
+      for(let i=1;i<stars.length;i++) ctx.lineTo(stars[i].x,stars[i].y);
+      ctx.stroke();
+    }
+    // stars
+    stars.forEach((s,i)=>{
+      const grad = ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,12);
+      grad.addColorStop(0,'#fff');
+      grad.addColorStop(.3,'rgba(212,168,90,.9)');
+      grad.addColorStop(1,'rgba(155,108,255,0)');
+      ctx.fillStyle=grad;
+      ctx.beginPath();ctx.arc(s.x,s.y,12,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#fff';
+      ctx.beginPath();ctx.arc(s.x,s.y,2,0,Math.PI*2);ctx.fill();
+    });
+  }
+  canvas.addEventListener('click',(e)=>{
+    const r=canvas.getBoundingClientRect();
+    stars.push({x:e.clientX-r.left,y:e.clientY-r.top});
+    draw();
+  });
+  canvas.addEventListener('dblclick',()=>{stars=[];draw();});
+  window.addEventListener('resize',resize);
+  resize();
+</script>
 
 </body>
 </html>
-
-
